@@ -1,6 +1,55 @@
-$primary-color: #f32;
-$background-color: #f1f1f1;
-$font-color: #333;
-$font-stack: 'Quicksand', 'Rubik',  'Nunito', 'Now', 'Gotham', sans-serif;
 
-$border-radius: 7px;
+$font-stack: 'Montserrat',  'Quicksand', 'sans-serif';
+$font-color: #eee;
+
+$font-size: 1.5em;
+
+$background-color: #223;
+$primary_color: #444;
+$box-color: #efefef;
+
+
+
+
+$header_height: 80px;
+
+
+$event_image_height: 250px;
+
+$social_bar_width: 50px;
+
+
+
+
+// ANIMATIONS
+@keyframes upDown {
+  to { transform: translatey(10px);}
+}
+
+@keyframes comeIn {
+  from {transform: scale(0.9) translateY(5px) skewX(5deg);opacity: 0;}
+  to {transform:scale(1) translateY(0px) skewX(00deg); opacity:1}
+}
+
+
+@keyframes spin {
+  from  {  transform: rotate(0deg) }
+  to    {  transform: rotate(360deg)}
+
+}
+
+
+
+
+@mixin radial-gradient($place, $color-stops...) {
+
+  background-image: radial-gradient($place , $color-stops);
+
+}
+
+// MIXINS
+@mixin linear-gradient($direction, $color-stops...) {
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}

@@ -1,0 +1,14 @@
+<table id="more_events">
+    <tbody>
+  <%  _.each(events,function(event,key,list){  %>
+
+
+      <tr>
+        <td class="event_date"><%= event.dateStart %></td>
+        <td class="event_title"><%= event.title %></td>
+        <td class="event_info"><% if (event.category) { %><%=   event.category %> <% } %></td>
+      </tr>
+
+      <% }) %>
+    </tbody>
+  </table>

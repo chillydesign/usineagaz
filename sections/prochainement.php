@@ -1,0 +1,35 @@
+
+<h2>- Prochainement-</h2>
+
+<div class="container">
+
+  <div id="events_container">
+    <span class="loading"></span>
+  </div>
+
+</div>
+
+  <h2>- More events - </h2>
+
+<div class="container">
+
+  <div id="more_events_container">
+    <span class="loading"></span>
+  </div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+	var events_api_url = '<?php echo home_url(); ?>/api/v1/?<?php echo ($event_type); ?>=true';
+	var access_token_url = '<?php echo get_template_directory_uri(); ?>/access_token.php';
+</script>
+<script id="events_template" type="x-underscore">
+<?php echo file_get_contents( get_stylesheet_directory() . '/templates/events.underscore'); ?>
+</script>
+<script id="more_events_template" type="x-underscore">
+<?php echo file_get_contents( get_stylesheet_directory() . '/templates/more_events.underscore'); ?>
+</script>

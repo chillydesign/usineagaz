@@ -22,6 +22,9 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "bxslider-4": "^4.2.12",
+    "underscore": "^1.8.3",
+    "font-awesome": "fontawesome#^4.7.0"
   }
 }

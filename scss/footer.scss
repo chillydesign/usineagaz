@@ -1,16 +1,49 @@
+@import "variables";
 
-
-/*FOOTER*/
 footer {
-	background:#222;
-	color: #ddd;
-	padding:20px 0;
-	margin:20px 0 0;
+  background: darken($background-color, 5);
+  color: white;
+  padding:20px 0;
+  margin:40px 0 0;
+
 }
 
-footer p {
-	padding:0
-}
-footer a {
-	color: white;
+
+
+#social_bar {
+  position: fixed;
+  top:100px;
+  z-index: 1000;
+  right: 0;
+  transform: translateX($social_bar_width);
+  transition: all 0.3s;
+
+  &.visible_bar {
+    transform: translateX(0);
+  }
+
+  ul {
+    width:$social_bar_width;
+    li {
+      display: block;
+      font-size: 2em;
+
+      a {
+        height: $social_bar_width;
+        line-height: $social_bar_width;
+        display: block;
+        text-align: center;
+        background: white;
+
+
+        i {
+
+        }
+        &:hover {
+          background: lighten($background-color, 30);
+          color: white;
+        }
+      }
+    }
+  }
 }

@@ -3,16 +3,13 @@
 
 
 
-<!-- section -->
-<section >
-
-	<h1 class="container"><?php the_title(); ?></h1>
 
 	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
 		<!-- article -->
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
+			<?php include('featured-section-loop.php'); ?>
 			<?php include('section-loop.php'); ?>
 
 
@@ -40,9 +37,6 @@
 	<!-- /article -->
 
 <?php endif; ?>
-
-</section>
-<!-- /section -->
 
 
 
