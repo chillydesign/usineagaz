@@ -11,7 +11,9 @@
 
 
 		<?php wp_footer(); ?>
-
+		<?php $tdu = get_template_directory_uri(); ?>
+		<script type="text/javascript" src="<?php echo $tdu; ?>/bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="<?php echo $tdu; ?>/js/min/scripts.js"></script>
 		<script>
 		// (function(f,i,r,e,s,h,l){i['GoogleAnalyticsObject']=s;f[s]=f[s]||function(){
 		// (f[s].q=f[s].q||[]).push(arguments)},f[s].l=1*new Date();h=i.createElement(r),
