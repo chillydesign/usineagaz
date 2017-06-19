@@ -19,8 +19,6 @@
 				<?php edit_post_link(); ?>
 			</div>
 
-
-
 		</article>
 		<!-- /article -->
 
