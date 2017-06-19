@@ -22,7 +22,7 @@
 
 	</article>
 	<!-- /article -->
-	
+
 <?php endwhile; ?>
 
 <?php else: ?>
@@ -41,8 +41,8 @@
 
 
 <script type="text/javascript">
-var events_api_url = '<?php echo home_url(); ?>/api/v1/?<?php echo ($event_type); ?>=true';
-var access_token_url = '<?php echo get_template_directory_uri(); ?>/access_token.php';
+  var access_token_url = '<?php echo get_template_directory_uri(); ?>/access_token.php';
+	var single_event_page = '<?php echo get_slug_from_template("template-event.php"); ?>';
 </script>
 <script id="event_single_template" type="x-underscore">
 <?php echo file_get_contents( get_stylesheet_directory() . '/templates/event_single.underscore'); ?>

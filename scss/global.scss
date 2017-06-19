@@ -118,6 +118,18 @@ section {
       background-color: #eee;
     }
 
+    a {
+      display: block;
+
+
+      &:link, &:visited, &:active {
+          color: white;
+      }
+      &:hover {
+
+      }
+    }
+
     .month {
       font-size: 2.5em;
       text-transform: uppercase;
@@ -136,6 +148,11 @@ section {
 
 
 table#more_events {
+  a {
+    &:link, &:visited, &:active {
+        color: white;
+    }
+  }
 .event_date {font-size: 1.5em;width: 20%;}
 .event_title {font-size: 1.8em;text-transform: uppercase;font-weight: bold}
 .event_info { font-style: italic;font-size: 1.5em;width: 30%;opacity: 0.8}

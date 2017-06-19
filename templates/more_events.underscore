@@ -5,7 +5,7 @@
 
       <tr>
         <td class="event_date"><%= event.dateStart %></td>
-        <td class="event_title"><%= event.title %></td>
+        <td class="event_title"><a href="<%= event.usine_link %>"><%= event.title %></a></td>
         <td class="event_info"><% if (event.category) { %><%=   event.category %> <% } %></td>
       </tr>
 

@@ -132,33 +132,48 @@ function getAccessToken(){
 
 }
 
+function shouldGetEventsFromStorage() {
+
+	if ( hasLocalStorage() ) {
+		var usine_events = localStorage.getItem('usine_events');
+		var usine_events_time = localStorage.getItem('usine_events_time');
+
+		// are events there and not older than 30 minutes;
+		if (usine_events != null && ( ( (new Date().getTime() ) - usine_events_time   )  / 1000 / 60 /30) < 1   ) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
+
 function callEventsApi($token){
 
-
-
-	var $dateTimeDebut ='2017-05-01';
-	var $dateTimeFin ='2019-12-01';
-	// var search_terms = window.location.search.split('&');
-	// for (var st = 0; st < search_terms.length; st++) {
-	// 	var search_term = search_terms[st];
-	// 	if ( search_term.indexOf('dateTimeDebut=') !== -1) {
-	//
-	// 		var term =  search_term.split('=')[1];
-	// 		if (term != '') $dateTimeDebut = term;
-	// 	}
-	// 	if ( search_term.indexOf('dateTimeFin=') !== -1) {
-	//
-	// 		var term =  search_term.split('=')[1];
-	// 		if (term != '') $dateTimeFin = term;
-	// 	}
-	// }
-
-	if ( hasLocalStorage() &&  localStorage.getItem('usine_events') != null ) {
+	// if have local storage and events are stored, and they are not more than 30 minutes old
+	if (  shouldGetEventsFromStorage()   ) {
 		var usine_events = localStorage.getItem('usine_events');
 		initUsineEvents( JSON.parse(usine_events) );
 
 	} else {
 
+		var $dateTimeDebut ='2017-05-01';
+		var $dateTimeFin ='2019-12-01';
+		// var search_terms = window.location.search.split('&');
+		// for (var st = 0; st < search_terms.length; st++) {
+		// 	var search_term = search_terms[st];
+		// 	if ( search_term.indexOf('dateTimeDebut=') !== -1) {
+		//
+		// 		var term =  search_term.split('=')[1];
+		// 		if (term != '') $dateTimeDebut = term;
+		// 	}
+		// 	if ( search_term.indexOf('dateTimeFin=') !== -1) {
+		//
+		// 		var term =  search_term.split('=')[1];
+		// 		if (term != '') $dateTimeFin = term;
+		// 	}
+		// }
 
 		$.ajax({
 			url: 'https://api.intrazik.com/api/v1/programmation',
@@ -171,6 +186,7 @@ function callEventsApi($token){
 		}).done(function( data ) {
 
 			if( hasLocalStorage() ){
+				localStorage.setItem('usine_events_time',  new Date().getTime() );
 				localStorage.setItem('usine_events',  JSON.stringify(data) );
 			}
 
@@ -234,6 +250,7 @@ function processEvents(events, event_types){
 
 		event['category'] = getEventTypeName( event['eventTypeId'] , event_types);
 
+		event['usine_link'] = single_event_page  + '#e=' + event['eventId'];
 
 		event['banner'] = ''; // maybe put placeholder here
 		if (typeof event['medias'].visuel !== 'undefined'){

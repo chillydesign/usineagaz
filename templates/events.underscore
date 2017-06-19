@@ -16,7 +16,7 @@
 
     </div>
     <div class="col-sm-5  ">
-      <h3><%= event.title %></h3>
+      <h3><a href="<%= event.usine_link %>"><%= event.title %></a></h3>
       <p><%= event.description2 %></p>
       <% if (event.link1) { %>
       <a href="<%= event.link1 %>" class="button">View event</a>

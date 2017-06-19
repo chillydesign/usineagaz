@@ -566,7 +566,25 @@ function thumbnail_of_post_url( $post_id,  $size='large'  ) {
 }
 
 
+function get_slug_from_template($template_name){
+    $url;
+    // get a page url from page template;
+     $pages = get_posts(array(
+         'post_type' =>'page',
+         'meta_key'  =>'_wp_page_template',
+         'meta_value'=> $template_name
+     ));
 
+     // cycle through $pages here and either grab the URL
+     // from the results or do get_page_link($id) with
+     // the id of the page you want
+
+     $url = null;
+     if(isset($pages[0])) {
+         $url = get_page_link($pages[0]->ID);
+     }
+     return $url;
+ }
 
 
 
