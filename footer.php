@@ -13,9 +13,9 @@
 
 			    <ul>
 			      <li><a href="#"><i class="fa fa-fw fa-search"></i></a></li>
-			      <li><a href="#"><i class="fa fa-fw fa-facebook"></i></a></li>
-			      <li><a href="#"><i class="fa fa-fw fa-twitter"></i></a></li>
-			      <li><a href="#"><i class="fa fa-fw fa-instagram"></i></a></li>
+			      <li><a href="https://www.facebook.com/usineagaz/"><i class="fa fa-fw fa-facebook"></i></a></li>
+			      <li><a href="https://twitter.com/usine_a_gaz?lang=fr"><i class="fa fa-fw fa-twitter"></i></a></li>
+			      <li><a href="https://www.instagram.com/usineagaz"><i class="fa fa-fw fa-instagram"></i></a></li>
 			      <li><a href="#"><i class="fa fa-fw fa-share-alt"></i></a></li>
 			      <li><a href="#"><i class="fa fa-fw fa-newspaper-o"></i></a></li>
 			      <li><a href="#"><i class="fa fa-fw fa-lock"></i></a></li>

@@ -118,8 +118,8 @@ function webfactor_conditional_scripts()
 // Load HTML5 Blank styles
 function webfactor_styles()
 {
-    wp_register_style('reset', get_template_directory_uri() . '/reset.css', array(), wf_version(), 'all');
-    wp_enqueue_style('reset'); // Enqueue it!
+  //  wp_register_style('reset', get_template_directory_uri() . '/reset.css', array(), wf_version(), 'all');
+  //  wp_enqueue_style('reset'); // Enqueue it!
 
     wp_register_style('wf_style', get_template_directory_uri() . '/css/global.css', array(), wf_version(),  'all');
     wp_enqueue_style('wf_style'); // Enqueue it!
@@ -254,7 +254,7 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
 function html5_blank_view_article($more)
 {
     global $post;
-    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'webfactor') . '</a>';
+    return '...';
 }
 
 // Remove Admin bar
@@ -564,6 +564,13 @@ function thumbnail_of_post_url( $post_id,  $size='large'  ) {
      return $image;
 
 }
+
+
+
+function custom_excerpt_length( $length ) {
+	return 20;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
 
 function get_slug_from_template($template_name){

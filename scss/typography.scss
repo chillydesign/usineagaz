@@ -99,6 +99,10 @@ input, textarea {
 
 }
 
+p .button {
+  font-size: inherit;
+}
+
 
 @media (min-width: 768px) {
   .button {

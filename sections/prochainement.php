@@ -9,7 +9,7 @@
 
 </div>
 
-  <h2>- More events - </h2>
+  <h2>- Programme - </h2>
 
 <div class="container">
 

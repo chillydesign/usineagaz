@@ -1,14 +1,16 @@
 
 
 
+
 <ul id="events">
 
 <%  _.each(events,function(event,key,list){  %>
 
   <div class="row event_row">
     <div class="col-sm-2">
-      <span class="month"><%= event.month %></span>
-      <span class="day"><%= event.day %></span>
+    <span class="day"><%= event.day %></span>
+      <span class="month"><%= event.month_text %></span>
+
     </div>
     <div class="col-sm-5">
 
@@ -19,7 +21,7 @@
       <h3><a href="<%= event.usine_link %>"><%= event.title %></a></h3>
       <p><%= event.description2 %></p>
       <% if (event.link1) { %>
-      <a href="<%= event.link1 %>" class="button">View event</a>
+      <a href="<%= event.link1 %>" class="button">Afficher</a>
       <% } %>
     </div>
   </div>

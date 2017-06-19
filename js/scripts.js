@@ -53,7 +53,7 @@
 			var windowScroll = $window.scrollTop();
 
 
-			if (windowScroll > ($windowHeight  ))  {
+			if (windowScroll > (300  ))  {
 				$header.addClass('visible_header');
 				$social_bar.addClass('visible_bar');
 			} else {
@@ -108,7 +108,8 @@ function loadEventSlider(){
 				controls: true,
 				autoHover: true,
 				video: true,
-				pager:false
+				pager:false,
+				mode: 'fade'
 			})
 }
 
