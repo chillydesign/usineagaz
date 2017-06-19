@@ -1,9 +1,89 @@
 
-<div id="single_event_inner" style="background-image:url('<%= event.banner %>');">
+
+
 <div class="container">
-<div class="event_text">
-<h1><%= event.title %></h1>
-</div>
-</div>
-  <div class="gradient"></div>
-</div>
+  <div class="event_text">
+
+
+    <div class="row">
+      <div class="col-xs-3 col-sm-2  col-lg-1">
+        <span class="day"><%= event.day %></span>
+        <span class="month"><%= event.month_text %></span>
+      </div>
+      <div class="col-xs-9 col-sm-10  col-lg-11">
+        <h1><%= event.title %></h1>
+        <p class="meta"> <i class="fa fa-fw fa-clock-o"></i> <%=  event.timeStart %></p>
+        <p class="meta"><i class="fa fa-fw fa-tag"></i>  <%=  event.category %></p>
+      </div>
+    </div>
+
+    <br/>
+    <br/>
+
+
+
+
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div style="padding: 0 30px 0 0">
+          <p><%= event.description2 %></p>
+        </div>
+
+
+
+      </div>
+      <div class="col-sm-6">
+        <% if (event.media.visuels.length > 0  || event.media.embededs.length > 0  ){ %>
+          <ul class="event_slider">
+
+            <% if (event.media.visuels.length > 0){ %>
+              <%  _.each(event.media.visuels,function(image,key,list){  %>
+                <li>
+                  <div class="image_from_background" style="background-image:url('<%= image %>');"></div>
+                </li>
+                <% }) %>
+                <% } %>
+
+                <% if (event.media.embededs.length > 0){ %>
+                  <%  _.each(event.media.embededs,function(embed,key,list){  %>
+                    <li><%=  embed %></li>
+                    <% }) %>
+                    <% } %>
+
+                  </ul>
+                  <% } %>
+
+                  <% if (event.media.audios.length > 0){ %>
+                    <h3>Audio</h3>
+                    <%  _.each(event.media.audios,function(audio,key,list){  %>
+                      <audio controls>
+                        <source src="<%= audio %>" type="audio/ogg">
+                          Your browser does not support the audio element.
+                        </audio>
+                        <br />
+                        <% }) %>
+                        <% } %>
+
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                  </div>
+
+
+                </div>
+
+
+                <div id="single_event_background" style="background-image:url('<%= event.banner %>');">
+                  <div class="gradient"></div>
+                </div>

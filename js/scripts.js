@@ -53,7 +53,7 @@
 			var windowScroll = $window.scrollTop();
 
 
-			if (windowScroll > ($fs_height  ))  {
+			if (windowScroll > ($windowHeight  ))  {
 				$header.addClass('visible_header');
 				$social_bar.addClass('visible_bar');
 			} else {
@@ -94,11 +94,23 @@
 		});
 
 
+		loadEventSlider();
+
+
 	});
 
 })(jQuery, this);
 
+function loadEventSlider(){
 
+			$('.event_slider').bxSlider({
+				auto: true,
+				controls: true,
+				autoHover: true,
+				video: true,
+				pager:false
+			})
+}
 
 
 function getAccessToken(){
@@ -217,7 +229,6 @@ function getEventTypeName(type_id, event_types){
 
 	var type = _.find(  event_types ,  function(et) {
 		return  (et.eventTypeId == type_id);
-
 	});
 
 	if (typeof type != 'undefined') {
@@ -226,11 +237,51 @@ function getEventTypeName(type_id, event_types){
 		return false;
 	}
 
+}
+
+function getMediaFiles(event_id, plays) {
+// plays means media such as video, audio, images
+	var plays = _.filter(  plays ,  function(p) {
+		return  (p.eventId == event_id);
+	});
+
+	var medias =  {audios: [] , visuels: [], embededs: [] };
+
+	_.each(  plays   , function(play){
+
+			if (typeof play.medias.audio != 'undefined') {
+					audios = play.medias.audio;
+					_.each(  audios   , function(audio){
+						medias.audios.push(audio.content_url);
+					});
+			};
+
+			if (typeof play.medias.embeded != 'undefined') {
+					embededs = play.medias.embeded;
+					_.each(  embededs   , function(embeded){
+						medias.embededs.push(embeded.content);
+					});
+			};
+
+			if (typeof play.medias.visuel != 'undefined') {
+					visuels = play.medias.visuel;
+					_.each(  visuels   , function(visuel){
+						medias.visuels.push(visuel.content_url);
+					});
+			};
+
+
+	});
+
+
+	return medias;
 
 
 }
 
-function processEvents(events, event_types){
+
+
+function processEvents(events, event_types, plays){
 	var events_array =  _.toArray(events) ;
 
 
@@ -244,11 +295,16 @@ function processEvents(events, event_types){
 		if (event['link1'] == '')  event['link1'] = false
 
 		event['month'] = event['dateStart'].split('-')[1];
+		event['month_text'] = numberToMonth(event['month']);
 		event['day'] = event['dateStart'].split('-')[2];
 
 		event['description_short'] = jQuery( '<p>' + event['description2'] + '</p>' ).text().split(' ').slice(0,20).join(' ') + '...';
 
 		event['category'] = getEventTypeName( event['eventTypeId'] , event_types);
+		event['media'] = getMediaFiles( event['eventId'] , plays);
+
+
+
 
 		event['usine_link'] = single_event_page  + '#e=' + event['eventId'];
 
@@ -278,6 +334,11 @@ function get_single_event(events, event_id) {
 }
 
 
+function numberToMonth($int){
+	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	return monthNames[$int -1];
+}
+
 
 function  hasLocalStorage() {
 	var testKey = 'test', storage = window.sessionStorage;
@@ -300,14 +361,13 @@ function initUsineEvents(data) {
 		var $event_single_template = $('#event_single_template').html();
 		var $event_single_container = $('#event_single_container');
 
-		console.log('data', data);
-
 
 
 	var $events = data.events;
 	var $event_types = data.event_types;
+	var $plays = data.plays;
 
-	var $processed_events = processEvents($events, $event_types);
+	var $processed_events = processEvents($events, $event_types, $plays);
 	$events_for_prochainement = $processed_events.slice(0,3); //first 3
 	$more_events = $processed_events.splice(3,   $processed_events.length  ); // all but first 3
 
@@ -338,6 +398,9 @@ function initUsineEvents(data) {
 					var $single_event =   get_single_event($events,  event_id  );
 
 					$event_single_container.html(  single_compiled({ event:   $single_event  })  );
+
+					loadEventSlider();
+
 				}
 
 
