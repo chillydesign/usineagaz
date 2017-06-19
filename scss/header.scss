@@ -31,13 +31,25 @@ header {
   nav {
 
     display: none;
+    background: black;
+    width: 100%;
+    left: 0;
+    top: $header_height;
+
+
+
+    &.navigation_visible {
+      display: block;
+     position: absolute;
+
+    }
 
     ul {
       list-style: none;
-      text-align: right;
+      text-align: center;
 
       li {
-        display: inline-block;
+        display:block;
         font-size: 1.7em;
         text-transform: uppercase;
         margin: 0 5px 0 0 ;
@@ -53,7 +65,7 @@ header {
 
 
         a {
-          display: inline-block;
+          display: block;
           padding:0 5px;
           line-height: $header_height;
           height: $header_height;
@@ -63,7 +75,7 @@ header {
             color: white;
           }
           &:hover {
-
+            background: lighten(black,20);
           }
         }
       }
@@ -72,8 +84,24 @@ header {
 
 }
 
+#show_nav {
+  display: block;
+  padding:0 20px;
+  height: $header_height;
+  line-height: $header_height;
+  text-transform: uppercase;
+  font-size: 2em;
+  background: lighten( transparentize(black,0.5),10);
+  color: white;
+  text-align: center;
+}
+
 
 @media (min-width: 768px) {
+
+  #show_nav {
+    display: none
+  }
 
 header {
 
@@ -82,6 +110,15 @@ header {
   }
   nav {
     display: block;
+    background: none;
+    top:auto;
+    position: static;
+    ul {
+      text-align: right;
+      li {
+        display: inline-block;
+      }
+    }
   }
 }
 

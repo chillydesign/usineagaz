@@ -37,8 +37,13 @@
 
 
 
-
-
+		// MOBILE NAV
+		var $show_nav = $('#show_nav');
+		var $nav_items = $('header nav');
+		$show_nav.on('click', function(e){
+			e.preventDefault();
+			$nav_items.toggleClass('navigation_visible');
+		})
 
 
 		setInterval( function(){

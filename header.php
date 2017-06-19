@@ -21,13 +21,17 @@
 
 
 		  <header>
+				<a href="#" id="show_nav">Menu</a>
 		    <div class="container">
 		      <div class="row">
 		        <div class="col-sm-3">
 		          <a href="<?php echo home_url(); ?>" id="logo"><?php bloginfo('name'); ?></a>
 		        </div>
 		        <nav class="col-sm-9">
-		           <?php chilly_nav('primary-navigation'); ?>
+							<ul>
+								    <?php //  chilly_nav('primary-navigation'); ?>
+							</ul>
+
 		        </nav>
 		      </div>
 		    </div>

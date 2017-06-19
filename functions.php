@@ -129,7 +129,7 @@ function webfactor_styles()
 function register_html5_menu()
 {
     register_nav_menus(array( // Using array to specify more menus if needed
-        'header-menu' => __('Header Menu', 'webfactor'), // Main Navigation
+        'primary-navigation' => __('Primary Navigation', 'webfactor'), // Main Navigation
         'sidebar-menu' => __('Sidebar Menu', 'webfactor'), // Sidebar Navigation
         'extra-menu' => __('Extra Menu', 'webfactor') // Extra Navigation if needed (duplicate as many as you need!)
     ));
