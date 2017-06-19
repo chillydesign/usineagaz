@@ -5,17 +5,15 @@ footer {
   color: white;
   padding:20px 0;
   margin:40px 0 0;
+  text-align: center;
 
 }
 
 
 
 #social_bar {
-  position: fixed;
-  top:100px;
-  z-index: 1000;
-  right: 0;
-  transform: translateX($social_bar_width);
+  position: static;
+
   transition: all 0.3s;
 
   &.visible_bar {
@@ -23,17 +21,22 @@ footer {
   }
 
   ul {
-    width:$social_bar_width;
+
+    text-align: center;
+      background: darken($background-color, 5);
+
     li {
-      display: block;
+      display: inline-block;
       font-size: 2em;
+      padding: 0;
+
 
       a {
-        height: $social_bar_width;
-        line-height: $social_bar_width;
+
         display: block;
         text-align: center;
-        background: white;
+        color: white;
+        padding:10px;
 
 
         i {
@@ -46,4 +49,32 @@ footer {
       }
     }
   }
+}
+
+
+@media (min-width: 768px) {
+  #social_bar {
+    position: fixed;
+    top:100px;
+    z-index: 1000;
+    right: 0;
+    transform: translateX($social_bar_width);
+
+    ul {
+        background: none;
+        width:$social_bar_width;
+        li {
+          display: block;
+          a {
+            height: $social_bar_width;
+            line-height: $social_bar_width;
+            padding: 1px;
+              background: white;
+              color: black;
+          }
+        }
+    }
+  }
+
+
 }

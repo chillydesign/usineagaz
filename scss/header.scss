@@ -22,7 +22,8 @@ header {
     text-indent: -9999px;
     display: inline-block;
     height: $header_height;
-    width: 100%;
+    width: 80%;
+    margin:0 10%;
     background: url('../images/logo.png') no-repeat center center;
     background-size: contain;
   }
@@ -75,6 +76,10 @@ header {
 @media (min-width: 768px) {
 
 header {
+
+  #logo {
+      width: 100%;
+  }
   nav {
     display: block;
   }
