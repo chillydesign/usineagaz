@@ -7,12 +7,12 @@
 
     <div class="row">
       <div class="col-xs-3 col-sm-2  col-lg-1">
-        <span class="day"><%= event.day %></span>
-        <span class="month"><%= event.month_text %></span>
+        <span class="day"><%= event.the_day %></span>
+        <span class="month"><%= event.the_month_text %></span>
       </div>
       <div class="col-xs-9 col-sm-10  col-lg-11">
         <h1><%= event.the_title %></h1>
-        <p class="meta"> <i class="fa fa-fw fa-clock-o"></i> <%=  event.the_timeStart %></p>
+        <p class="meta"> <i class="fa fa-fw fa-clock-o"></i> <%=  event.timeStart %></p>
         <p class="meta"><i class="fa fa-fw fa-tag"></i>  <%=  event.the_category %></p>
       </div>
     </div>

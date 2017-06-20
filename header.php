@@ -21,7 +21,7 @@
 
 
 		  <header>
-				<a href="#" id="show_nav">Menu</a>
+				<!-- <a href="#" id="show_nav">Menu</a> -->
 		    <div class="container">
 		      <div class="row">
 		        <div class="col-sm-3">

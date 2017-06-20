@@ -10,11 +10,16 @@ footer {
 }
 
 
+body.event #social_bar {
+  transform: translateX(0);
+}
+
 
 #social_bar {
   position: static;
 
   transition: all 0.3s;
+
 
   &.visible_bar {
     transform: translateX(0);

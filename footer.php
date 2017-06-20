@@ -12,7 +12,7 @@
 			<div id="social_bar">
 
 			    <ul>
-			      <li><a target="_blank" href="#"><i class="fa fa-fw fa-search"></i></a></li>
+			      <li><a id="jump_to_search" href="<?php echo get_home_url(); ?>#eventSearchForm"><i class="fa fa-fw fa-search"></i></a></li>
 			      <li><a target="_blank" href="https://www.facebook.com/usineagaz/"><i class="fa fa-fw fa-facebook"></i></a></li>
 			      <li><a target="_blank" href="https://twitter.com/usine_a_gaz?lang=fr"><i class="fa fa-fw fa-twitter"></i></a></li>
 			      <li><a target="_blank" href="https://www.instagram.com/usineagaz"><i class="fa fa-fw fa-instagram"></i></a></li>
