@@ -25,6 +25,7 @@
     "jquery": "^3.2.1",
     "bxslider-4": "^4.2.12",
     "underscore": "^1.8.3",
-    "fitvids": "^1.2.0"
+    "fitvids": "^1.2.0",
+    "clndr": "^1.4.7"
   }
 }

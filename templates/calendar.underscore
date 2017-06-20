@@ -1,0 +1,15 @@
+
+<div class="controls">
+  <div class="clndr-previous-button">&lsaquo;</div><div class="month"><%= month %> <%= year %></div><div class="clndr-next-button">&rsaquo;</div>
+</div>
+
+<div class="days-container">
+  <div class="days">
+    <div class="headers">
+      <% _.each(daysOfTheWeek, function(day) { %><div class="day-header"><%= day %></div><% }); %>
+    </div>
+    <% _.each(days, function(day) { %><% _.each(day.events, function(event) {day.classes = day.classes + ' ' + event.classname; }) %><div class="<%= day.classes %>" id="<%= day.id %>"><%= day.day %></div><% }); %>
+  </div>
+</div>
+
+<div id="reset" class="" onClick="resetCalendar()">See all</div>

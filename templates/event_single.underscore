@@ -2,7 +2,7 @@
 
 
 <div class="container">
-  <div class="event_text">
+  <div class="single_text single_event">
 
 
     <div class="row">
@@ -26,11 +26,7 @@
 
     <div class="row">
       <div class="col-sm-6">
-        <div style="padding: 0 30px 0 0">
           <p><%= event.the_description2 %></p>
-        </div>
-
-
 
       </div>
       <div class="col-sm-6">
@@ -78,6 +74,6 @@
                 </div>
 
 
-                <div id="single_event_background" style="background-image:url('<%= event.the_banner %>');">
+                <div id="single_background" style="background-image:url('<%= event.the_banner %>');">
                   <div class="gradient"></div>
                 </div>

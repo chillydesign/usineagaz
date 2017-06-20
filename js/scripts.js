@@ -20,7 +20,6 @@
 
 
 
-
 		if ( hasLocalStorage() &&  localStorage.getItem('usine_access_token') != null ) {
 
 			var  $access_token = localStorage.getItem('usine_access_token');
@@ -304,17 +303,22 @@ function processData(data, dates, search){
 
 	if (typeof dates != 'undefined' && dates !== {}  ) {
 				var dateTimeDebut = Date.parse(dates.dateTimeDebut);
-				var dateTimeFin = Date.parse( dates.dateTimeFin);
-				if ( !_.isNaN(dateTimeFin)  &&  !_.isNaN(dateTimeFin) ) {
+			//	var dateTimeFin = Date.parse( dates.dateTimeFin);
+				if ( !_.isNaN(dateTimeDebut)   ) {  // &&  !_.isNaN(dateTimeFin)
 					 events  = _.filter(  events  , function(e){
-							return (   Date.parse(e.dateStart) >= dateTimeDebut &&   Date.parse(e.dateStart) <= dateTimeFin   )
+							// return (   Date.parse(e.dateStart) >= dateTimeDebut &&   Date.parse(e.dateStart) <= dateTimeFin   )
+							return (   Date.parse(e.dateStart) == dateTimeDebut  )
 					 });
 				}
 	}
 
 	if (typeof search != 'undefined' && search != false) {
 			events = _.filter(  events  , function(e){
-				 return (   e.title.fre.toLowerCase().indexOf( search.toLowerCase() ) > -1   )
+				 return (
+					 (e.title.fre.toLowerCase().indexOf( search.toLowerCase() ) > -1) ||
+					 (e.description2.fre.toLowerCase().indexOf( search.toLowerCase() ) > -1  )
+
+				   )
 			});
 	}
 
@@ -334,13 +338,10 @@ function processData(data, dates, search){
 		event['the_month_text'] = numberToMonth(event['the_month']);
 		event['the_day'] = event['dateStart'].split('-')[2];
 
-		event['the_description_short'] = jQuery( '<p>' + event['the_description2'] + '</p>' ).text().split(' ').slice(0,20).join(' ') + '...';
+		event['the_description_short'] = jQuery( '<p>' + event['the_description2'] + '</p>' ).text().split(' ').slice(0,50).join(' ') + '...';
 
 		event['the_category'] = getEventTypeName( event['eventTypeId'] , event_types);
 		event['the_media'] = getMediaFiles( event['eventId'] , plays);
-
-
-
 
 		event['the_usine_link'] = single_event_page  + '#e=' + event['eventId'];
 
@@ -436,6 +437,9 @@ function initUsineEvents(data) {
 		var $date_fields = $('.date_field');
 		var $event_keyword = $('#eventKeyword');
 
+		var $calendar_template = $('#calendar_template').html();
+		var $calendar_container = $('#calendar_container');
+
 
 
 
@@ -465,6 +469,29 @@ function initUsineEvents(data) {
 
 	}
 
+	if ($calendar_container.length >0 ) {
+		var cal1 = $calendar_container.clndr({
+				template: $calendar_template,
+				forceSixRows: true,
+				events: data.events,
+				dateParameter: 'dateStart',
+				clickEvents: {
+					click: function (target) {
+							var target_date = target.date._i;
+							$('#dateTimeDebut').val(target_date).change();
+							$calendar_container.removeClass('clndr_visible');
+					}
+
+				}
+			});
+
+			$('#dateTimeDebut').on('click', function(){
+					$calendar_container.toggleClass('clndr_visible');
+			});
+
+
+		}
+
 
 
 	// CHANGE SEARCH BASED ON HASH PARAMS
@@ -482,6 +509,8 @@ function initUsineEvents(data) {
 					var single_compiled =  _.template($event_single_template);
 
 					displaySingleEvent($single_event, $event_single_container, single_compiled );
+
+					document.title = $single_event.the_title;
 
 				}
 			}
@@ -506,7 +535,7 @@ function jumpToSearchEventsForm(){
 		$eventSearchForm.show();
 		if (typeof $hash !== 'undefined') {
 			if( $eventSearchForm.length  > 0) {
-				$("html, body").animate({ scrollTop: $eventSearchForm.offset().top }, 1000);
+				$("html, body").animate({ scrollTop: $eventSearchForm.offset().top  - 100 }, 1000);
 			} else {
 				window.location.href = $href;
 			}
@@ -519,9 +548,14 @@ function jumpToSearchEventsForm(){
 		for (var h = 0; h < hashes.length; h++) {
 			var hash = hashes[h];
 			if ( hash.indexOf('eventSearchForm') !== -1) {
-						$eventSearchForm.show();
-						$("html, body").animate({ scrollTop: $eventSearchForm.offset().top }, 1000);
+					$eventSearchForm.show();
+						$("html, body").animate({ scrollTop: $eventSearchForm.offset().top - 100 }, 1000);
 			}
 		}
 	}
+}
+
+function resetCalendar(){
+	$('#dateTimeDebut').val('').change();
+	$('#calendar_container').removeClass('clndr_visible');
 }

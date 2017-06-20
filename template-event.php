@@ -10,8 +10,7 @@
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 
-		<section id="single_event_section"  class="section  ">
-
+		<section id="single_section"  class="section  ">
 			<div id="event_single_container">
 				<span class="loading"></span>
 			</div>

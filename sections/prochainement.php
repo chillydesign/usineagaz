@@ -14,15 +14,26 @@
 <div class="container">
 
   <form id="eventSearchForm" action="">
-    <input id="dateTimeDebut" name="dateTimeDebut" type="date" class=" date_field">
-    <input id="dateTimeFin" name="dateTimeFin" type="date" class=" date_field">
-    <input id="eventKeyword" name="eventKeyword" type="text" class=" ">
+    <input id="dateTimeDebut" placeholder="pick a date" name="dateTimeDebut" type="text" class=" date_field">
+
+    <input id="eventKeyword" name="eventKeyword" type="text" placeholder="search by keyword" class=" ">
+
+    <div id="calendar_container">
+			<span class="loading"></span>
+		</div>
+
   </form>
 
 
-  <div id="more_events_container">
-    <span class="loading"></span>
-  </div>
+      <div id="more_events_container">
+        <span class="loading"></span>
+      </div>
+
+
+
+
+
+
 
 </div>
 
@@ -38,4 +49,7 @@
 </script>
 <script id="more_events_template" type="x-underscore">
 <?php echo file_get_contents( get_stylesheet_directory() . '/templates/more_events.underscore'); ?>
+</script>
+<script id="calendar_template" type="x-underscore">
+<?php echo file_get_contents( get_stylesheet_directory() . '/templates/calendar.underscore'); ?>
 </script>
