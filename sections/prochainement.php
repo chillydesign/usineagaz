@@ -14,9 +14,10 @@
 <div class="container">
 
   <form id="eventSearchForm" action="">
-    <input id="dateTimeDebut" placeholder="pick a date" name="dateTimeDebut" type="text" class=" date_field">
+    <input id="eventKeyword" name="eventKeyword" type="text" placeholder="chercher" class=" ">
+    <input id="dateTimeDebut" placeholder="Choisir une date" name="dateTimeDebut" type="text" class=" date_field">
 
-    <input id="eventKeyword" name="eventKeyword" type="text" placeholder="search by keyword" class=" ">
+
 
     <div id="calendar_container">
 			<span class="loading"></span>

@@ -85,9 +85,19 @@ section {
 
 #eventSearchForm {
   padding-top:10px;
+  text-align: center;
   input {
     margin:0 0 10px;
     width: 100%;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px 0 0 10px;
+
+
+    &:nth-child(2n) {
+      border-radius: 0 10px 10px 0;
+    }
   }
 
 }
@@ -96,18 +106,53 @@ section {
 @media (min-width: 768px) {
   #eventSearchForm {
     input {
-      width: auto;
+      width: 250px;
     }
     }
 }
 
+iframe {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  margin:0  0 20px;
+}
+
+.full_width_iframe {
+}
+
+.half_width_iframe{
+}
 
 
+@media (min-width: 768px) {
+  .half_width_iframe{
+    width: 48%;
+    float: left;
+    margin:0 4% 0 0;
 
+    &:nth-child(2) {
+      margin-right: 0;
+    }
+  }
+
+
+  iframe {
+    min-height: 200px;
+  }
+
+}
+
+
+.title_container {
+  float:left;
+      width: calc(100% - 121px);
+}
 
 .date_container {
   float:left;
   margin:0 16px 0 0;
+  width:100px;
 
 }
 .month {
@@ -238,6 +283,7 @@ section {
 
     h3  a {
       display: block;
+      border-bottom: 0;
 
 
       &:link, &:visited, &:active {
@@ -256,6 +302,8 @@ section {
 
 table#more_events {
   a {
+    border-bottom: 0;
+
     &:link, &:visited, &:active {
       color: white;
     }
@@ -340,6 +388,7 @@ table#more_events {
   left: -20px;
   top: 40%;
   top: calc(50% - 25px);
+  border: 0;
 }
 .bx-controls-direction a.bx-next {
   background-image: url('../images/chevron-r.svg');
@@ -388,6 +437,27 @@ table#more_events {
     height: 400px;
     width: 100%;
   }
+
+  h3 {
+    padding: 10px;
+    background: transparentize(black, 0.5);
+    position: absolute;
+  bottom: 0;
+  left: 0;
+right: 0;
+width: 100%;
+font-size: 1.6em
+  }
+
+  .credit {
+    position: absolute;
+    top:5px;
+    right: 5px;
+    font-size: 10px;
+    opacity: 0.6;
+  }
+
+
 
 
 }

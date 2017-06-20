@@ -10,6 +10,10 @@ header {
   z-index: 100;
   transition: background-color 0.3s;
 
+  a {
+    border-bottom: 0;
+  }
+
   &.visible_header {
     background: transparentize( darken($background-color, 8)  , 0.3);
     a:link, a:visited, a:active  {

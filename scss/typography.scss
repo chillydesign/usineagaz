@@ -43,12 +43,22 @@ p {
   padding: 0 0 20px;
 }
 
+li {
+  font-size: $font-size;
+  padding:0 0 5px;
+}
+
+ul,ol {
+  margin:0 0 30px;
+}
+
 a {
   text-decoration: none;
   transition: all 0.3s;
+  border-bottom: 1px dotted white;
 
   &:link, &:visited, &:active {
-    color: $primary_color;
+    color: white;
   }
 
 

@@ -5,15 +5,15 @@
   <div class="single_text single_event">
 
 
-    <div class="row">
-      <div class="col-xs-3 col-sm-2  col-lg-1">
+    <div class="clearfix">
+      <div class="date_container">
         <span class="day"><%= event.the_day %></span>
         <span class="month"><%= event.the_month_text %></span>
       </div>
-      <div class="col-xs-9 col-sm-10  col-lg-11">
+      <div class="title_container">
         <h1><%= event.the_title %></h1>
-        <p class="meta"> <i class="fa fa-fw fa-clock-o"></i> <%=  event.timeStart %></p>
-        <p class="meta"><i class="fa fa-fw fa-tag"></i>  <%=  event.the_category %></p>
+        <p class="meta"> <i class="fa fa-fw fa-clock-o"></i> <%=  event.timeStart.substr(0,5) %> </p>
+        <p class="meta"><i class="fa fa-fw fa-tag"></i>  <%=  event.the_category %> / <%=  event.the_style %></p>
       </div>
     </div>
 
@@ -23,57 +23,101 @@
 
 
 
-
     <div class="row">
       <div class="col-sm-6">
-          <p><%= event.the_description2 %></p>
+        <p><%= event.the_description2 %></p>
 
-      </div>
-      <div class="col-sm-6">
-        <% if (event.the_media.visuels.length > 0  || event.the_media.embededs.length > 0  ){ %>
-          <ul class="event_slider">
 
-            <% if (event.the_media.visuels.length > 0){ %>
-              <%  _.each(event.the_media.visuels,function(image,key,list){  %>
-                <li>
-                  <div class="image_from_background" style="background-image:url('<%= image %>');"></div>
-                </li>
-                <% }) %>
+        <% if ( event.the_media.artists.length > 0 ) { %>
+          <h3> <i class="fa fa-link"></i> Liens</h3>
+          <%  _.each(event.the_media.artists ,function(artist,key,list){  %>
+            <ul>
+              <%  if ( event.the_media.artists.length > 1 ) { %>
+                <li><%= artist.name %></strong></li>
                 <% } %>
 
-                <% if (event.the_media.embededs.length > 0){ %>
-                  <%  _.each(event.the_media.embededs,function(embed,key,list){  %>
-                    <li><%=  embed %></li>
-                    <% }) %>
-                    <% } %>
+                <%  _.each(artist.links ,function(link,key,list){  %>
+                  <li><a href="<%= link %>"><%= link %></a></li>
+                  <% }) %>
+                </ul>
+                <% }) %>
 
-                  </ul>
-                  <% } %>
+                <%} %>
 
-                  <% if (event.the_media.audios.length > 0){ %>
-                    <h3>Audio</h3>
-                    <%  _.each(event.the_media.audios,function(audio,key,list){  %>
-                      <audio controls>
-                        <source src="<%= audio %>" type="audio/ogg">
-                          Your browser does not support the audio element.
-                        </audio>
-                        <br />
+                <% if ( event.salesLink != '' ) { %>
+
+              <p>  <a class="button " href="<%= event.salesLink %>"><i class="fa fa-ticket"></i> Billeterie</a>  </p>
+                <%} %>
+
+
+
+
+
+              </div>
+              <div class="col-sm-6">
+                <% if (event.the_media.visuels.length > 0   ){ %>
+                  <ul class="event_slider">
+
+                    <% if (event.the_media.visuels.length > 0){ %>
+                      <%  _.each(event.the_media.visuels,function(image,key,list){  %>
+                        <li>
+                          <div class="image_from_background" style="background-image:url('<%= image.content_url %>');"></div>
+                          <h3><%=  image.title %></h3>
+                          <p class="credit"><%=  image.credit %></p>
+                        </li>
                         <% }) %>
                         <% } %>
 
-                      </div>
-                    </div>
+                      </ul>
+                      <% } %>
+
+
+
+                      <% if (event.the_media.embededs.length > 0){ %>
+                        <h3> <i class="fa fa-video-camera"></i> Video</h3>
+                        <div class="clearfix">
+                          <% if (event.the_media.embededs.length == 1){ %>
+                            <%  _.each(event.the_media.embededs,function(embed,key,list){  %>
+                              <div class="full_width_iframe"><%=  embed %></div>
+                              <% }) %>
+
+                              <% } else { %>
+                                <%  _.each(event.the_media.embededs,function(embed,key,list){  %>
+                                  <div class="half_width_iframe""><%=  embed %></div>
+                                  <% }) %>
+                                  <% } %>
+                                </div>
+                                <% } %>
 
 
 
 
 
-                  </div>
+                                <% if (event.the_media.audios.length > 0){ %>
+                                  <h3><i class="fa fa-volume-up"></i> Audio</h3>
+                                  <%  _.each(event.the_media.audios,function(audio,key,list){  %>
+                                    <p><%= audio.title %></p>
+                                    <audio controls>
+                                      <source src="<%= audio.content_url %>" type="audio/ogg">
+                                        Your browser does not support the audio element.
+                                      </audio>
+                                      <br /><br />
+                                      <% }) %>
+                                      <% } %>
+
+                                    </div>
+                                  </div>
 
 
-                </div>
 
 
-                <div id="single_background" style="background-image:url('<%= event.the_banner %>');">
-                  <div class="gradient"></div>
-                </div>
+
+                                </div>
+
+
+                              </div>
+
+
+                              <div id="single_background" style="background-image:url('<%= event.the_banner %>');">
+                                <div class="gradient"></div>
+                              </div>

@@ -6,7 +6,7 @@
       <tr>
         <td class="event_date"><%= event.the_day %> <%= event.the_month_text %></td>
         <td class="event_title"><a href="<%= event.the_usine_link %>"><%= event.the_title %></a></td>
-        <td class="event_info"><% if (event.the_category) { %><%=   event.the_category %> <% } %></td>
+        <td class="event_info"><% if (event.the_category) { %> <%=  event.the_style %><% } %></td>
       </tr>
 
       <% }) %>
