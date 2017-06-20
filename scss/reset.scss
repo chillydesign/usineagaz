@@ -13,6 +13,24 @@ table {	border-collapse: collapse;	border-spacing: 0}
   -moz-box-sizing: border-box;
   box-sizing: border-box;}
 
+.showOnMobile {
+  visibility: visible;
+}
+.showOnComputer {
+  visibility: hidden;
+}
+
+
+@media (min-width: 768px) {
+  .showOnMobile {
+    visibility: hidden;
+  }
+  .showOnComputer {
+    visibility: visible;
+  }
+
+
+}
 
 .clearfix {
   clear:both;

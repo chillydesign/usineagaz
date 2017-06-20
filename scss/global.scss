@@ -92,12 +92,10 @@ section {
     background: transparent;
     color: white;
     border: 1px solid white;
-    border-radius: 10px 0 0 10px;
 
 
-    &:nth-child(2n) {
-      border-radius: 0 10px 10px 0;
-    }
+
+
   }
 
 }
@@ -107,6 +105,11 @@ section {
   #eventSearchForm {
     input {
       width: 250px;
+        border-radius: 10px 0 0 10px;
+
+        &:nth-child(2n) {
+          border-radius: 0 10px 10px 0;
+        }
     }
     }
 }
@@ -197,7 +200,7 @@ iframe {
       color: white;
       font-weight: bold;
       padding:0 0 30px;
-      font-size: 5em;
+      font-size: 3.3em;
     }
 
 
@@ -205,7 +208,7 @@ iframe {
     position: relative;
     height: 100%;
     width: 100%;
-    min-height: 500px;
+    min-height: 650px;
 
 
     li {
@@ -253,9 +256,15 @@ iframe {
 
 
 @media (min-width: 768px) {
-  #featured_section     h1 {
-      font-size: 7em;
-    }
+  #featured_section    {
+
+      ul#featured_slides {
+          min-height: 600px;
+      }
+    h1 {
+        font-size: 6em;
+      }
+  }
 }
 
 
@@ -309,8 +318,8 @@ table#more_events {
     }
   }
   .event_date {font-size: 1.5em;}
-  .event_title {font-size: 1.8em;text-transform: uppercase;font-weight: bold}
-  .event_info { font-style: italic;font-size: 1.5em;width: 30%;opacity: 0.8}
+  .event_title a {font-size: 1.1em;text-transform: uppercase;font-weight: bold}
+  .event_info { font-style: italic;font-size: 1.1em;opacity: 0.8}
 
 }
 
