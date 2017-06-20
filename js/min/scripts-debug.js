@@ -177,7 +177,7 @@ function callEventsApi($token){
 	} else {
 
 		var $dateTimeDebut ='2017-05-01';
-		var $dateTimeFin ='2019-12-01';
+		var $dateTimeFin ='2023-12-01';
 		// var search_terms = window.location.search.split('&');
 		// for (var st = 0; st < search_terms.length; st++) {
 		// 	var search_term = search_terms[st];
@@ -286,44 +286,67 @@ function getMediaFiles(event_id, plays) {
 }
 
 
+function processData(data, dates, search){
 
-function processEvents(events, event_types, plays){
+
+	var events = data.events;
+	var event_types = data.event_types;
+	var plays = data.plays;
+
+	if (typeof dates != 'undefined' && dates !== {}  ) {
+				var dateTimeDebut = Date.parse(dates.dateTimeDebut);
+				var dateTimeFin = Date.parse( dates.dateTimeFin);
+				if ( !_.isNaN(dateTimeFin)  &&  !_.isNaN(dateTimeFin) ) {
+					 events  = _.filter(  events  , function(e){
+							return (   Date.parse(e.dateStart) >= dateTimeDebut &&   Date.parse(e.dateStart) <= dateTimeFin   )
+					 });
+				}
+	}
+
+	if (typeof search != 'undefined' && search != false) {
+			events = _.filter(  events  , function(e){
+				 return (   e.title.fre.toLowerCase().indexOf( search.toLowerCase() ) > -1   )
+			});
+	}
+
 	var events_array =  _.toArray(events) ;
 
 
-	for (var i = 0; i < events.length ; i++) {
-		var event = events[i];
-		event['title'] = event['title']['fre'];
-		event['subtitle'] = event['subtitle']['fre'];
-		event['style'] = event['style']['fre'];
-		event['description2'] = event['description2']['fre'];
-		event['link1'] = event['link1']['fre'];
-		if (event['link1'] == '')  event['link1'] = false
+	for (var i = 0; i < events_array.length ; i++) {
+		var event = events_array[i];
+		event['the_title'] = event['title']['fre'];
+		event['the_subtitle'] = event['subtitle']['fre'];
+		event['the_style'] = event['style']['fre'];
+		event['the_description2'] = event['description2']['fre'];
+		event['the_link1'] = event['link1']['fre'];
+		if (event['the_link1'] == '')  event['the_link1'] = false
 
-		event['month'] = event['dateStart'].split('-')[1];
-		event['month_text'] = numberToMonth(event['month']);
-		event['day'] = event['dateStart'].split('-')[2];
+		event['the_month'] = event['dateStart'].split('-')[1];
+		event['the_month_text'] = numberToMonth(event['the_month']);
+		event['the_day'] = event['dateStart'].split('-')[2];
 
-		event['description_short'] = jQuery( '<p>' + event['description2'] + '</p>' ).text().split(' ').slice(0,20).join(' ') + '...';
+		event['the_description_short'] = jQuery( '<p>' + event['the_description2'] + '</p>' ).text().split(' ').slice(0,20).join(' ') + '...';
 
-		event['category'] = getEventTypeName( event['eventTypeId'] , event_types);
-		event['media'] = getMediaFiles( event['eventId'] , plays);
+		event['the_category'] = getEventTypeName( event['eventTypeId'] , event_types);
+		event['the_media'] = getMediaFiles( event['eventId'] , plays);
+
+		
 
 
+		event['the_usine_link'] = single_event_page  + '#e=' + event['eventId'];
 
-
-		event['usine_link'] = single_event_page  + '#e=' + event['eventId'];
-
-		event['banner'] = ''; // maybe put placeholder here
+		event['the_banner'] = ''; // maybe put placeholder here
 		if (typeof event['medias'].visuel !== 'undefined'){
-			event['banner'] = event['medias'].visuel[0].content_url;
+			event['the_banner'] = event['medias'].visuel[0].content_url;
 		}
 
 
 	}
 
+	data.events = events_array;
 
-	return events_array;
+
+	return data;
 
 }
 
@@ -338,6 +361,46 @@ function get_single_event(events, event_id) {
 
 
 }
+
+function displaySingleEvent(event, container, compiled){
+
+		container.html(  compiled({ event:   event  })  );
+		loadEventSlider(); // slider of this events picture and videos.
+
+}
+
+
+function displayEvents(data, container, compiled){
+
+			var cloned_data  = _.clone(data);
+
+			var $date_fields = $('.date_field');
+			var $event_keyword = $('#eventKeyword');
+
+			var $dates = {};
+	    $date_fields.each(function(){
+				var $field = $(this);
+				$name = $field.attr('name');
+				if ( $field.val() != '') $dates[$name] =  $field.val();
+			});
+
+			$search = false;
+			if ($event_keyword.val() != ''){
+				$search = $event_keyword.val();
+			}
+			console.log($search);
+
+
+
+			var processed_data  = processData(cloned_data, $dates, $search);
+
+
+
+
+		 container.html(  compiled({ events:   processed_data.events  })  );
+
+}
+
 
 
 function numberToMonth($int){
@@ -357,6 +420,7 @@ function  hasLocalStorage() {
 	}
 }
 
+
 function initUsineEvents(data) {
 
 
@@ -366,26 +430,36 @@ function initUsineEvents(data) {
 		var $more_events_container = $('#more_events_container');
 		var $event_single_template = $('#event_single_template').html();
 		var $event_single_container = $('#event_single_container');
+		var $date_fields = $('.date_field');
+		var $event_keyword = $('#eventKeyword');
 
 
 
-	var $events = data.events;
-	var $event_types = data.event_types;
-	var $plays = data.plays;
 
-	var $processed_events = processEvents($events, $event_types, $plays);
-	$events_for_prochainement = $processed_events.slice(0,3); //first 3
-	$more_events = $processed_events.splice(3,   $processed_events.length  ); // all but first 3
 
+
+	//$more_events = $processed_events.splice(3,   $processed_events.length  ); // all but first 3
+		var $processed_data = processData(data);
 
 	if( $events_container.length  > 0) {
 		var compiled =  _.template($events_template);
+
+		$events_for_prochainement = $processed_data.events.slice(0,3); //first 3
 		$events_container.html(  compiled({ events:   $events_for_prochainement  })  );
 	}
 
 	if ($more_events_container.length >0 ) {
 		var more_compiled =  _.template($more_events_template);
-		$more_events_container.html(  more_compiled({ events:   $more_events  })  );
+		displayEvents( data, $more_events_container, more_compiled );
+
+
+		$date_fields.on('change', function(e){
+			displayEvents( data, $more_events_container, more_compiled );
+		});
+		$event_keyword.on('keyup', function(e){
+			displayEvents( data, $more_events_container, more_compiled );
+		});
+
 	}
 
 
@@ -395,25 +469,22 @@ function initUsineEvents(data) {
 		var hashes = window.location.hash.split('&');
 		for (var h = 0; h < hashes.length; h++) {
 			var hash = hashes[h];
-			console.log(hash);
+
 			if ( hash.indexOf('e=') !== -1) {
 				var event_id = hash.split('=')[1];
 
 				if ($event_single_container.length >0){
+
+					var $single_event =   get_single_event($processed_data.events,  event_id  );
 					var single_compiled =  _.template($event_single_template);
-					var $single_event =   get_single_event($events,  event_id  );
 
-					$event_single_container.html(  single_compiled({ event:   $single_event  })  );
-
-					loadEventSlider();
+					displaySingleEvent($single_event, $event_single_container, single_compiled );
 
 				}
-
-
 			}
-
-
 		}
 	}
+
+
 
 } // END OF initUsineEvents

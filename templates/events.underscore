@@ -8,19 +8,19 @@
 
   <div class="row event_row">
     <div class="col-sm-2">
-    <span class="day"><%= event.day %></span>
-      <span class="month"><%= event.month_text %></span>
+    <span class="day"><%= event.the_day %></span>
+      <span class="month"><%= event.the_month_text %></span>
 
     </div>
     <div class="col-sm-5">
 
-        <div class="image_from_background" style="background-image:url('<%= event.banner %>');"></div>
+        <div class="image_from_background" style="background-image:url('<%= event.the_banner %>');"></div>
 
     </div>
     <div class="col-sm-5  ">
-      <h3><a href="<%= event.usine_link %>"><%= event.title %></a></h3>
-      <p><%= event.description2 %></p>
-      <a href="<%= event.usine_link %>" class="button">Afficher</a>
+      <h3><a href="<%= event.the_usine_link %>"><%= event.the_title %></a></h3>
+      <p><%= event.the_description2 %></p>
+      <a href="<%= event.the_usine_link %>" class="button">Afficher</a>
     </div>
   </div>
 

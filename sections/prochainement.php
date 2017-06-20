@@ -13,6 +13,13 @@
 
 <div class="container">
 
+  <form id="eventSearchForm" action="">
+    <input id="dateTimeDebut" name="dateTimeDebut" type="date" class=" date_field">
+    <input id="dateTimeFin" name="dateTimeFin" type="date" class=" date_field">
+    <input id="eventKeyword" name="eventKeyword" type="text" class=" ">
+  </form>
+
+
   <div id="more_events_container">
     <span class="loading"></span>
   </div>
