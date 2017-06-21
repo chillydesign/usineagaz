@@ -1,3 +1,10 @@
+
+  import bxslider from 'bxslider/src/js/jquery.bxslider.js';
+  import clndr from 'clndr';
+
+
+moment.locale('fr');
+
 (function ($, root, undefined) {
 
 	$(function () {
@@ -17,7 +24,6 @@
 
 
 
-		momentInFrench();
 
 
 		if ( hasLocalStorage() &&  localStorage.getItem('usine_access_token') != null ) {
@@ -112,7 +118,7 @@
 
 	});
 
-})(jQuery, this);
+})($, this);
 
 function loadEventSlider(){
 
@@ -120,7 +126,7 @@ function loadEventSlider(){
 				auto: true,
 				controls: true,
 				autoHover: true,
-				video: true,
+				video: false,
 				pager:false,
 				mode: 'fade'
 			})
@@ -269,21 +275,21 @@ function getMediaFiles(event_id, plays) {
 			var links = [];
 
 			if (typeof play.medias.audio != 'undefined') {
-					audios = play.medias.audio;
+					var audios = play.medias.audio;
 					_.each(  audios   , function(audio){
 						medias.audios.push(audio);
 					});
 			};
 
 			if (typeof play.medias.embeded != 'undefined') {
-					embededs = play.medias.embeded;
+					var embededs = play.medias.embeded;
 					_.each(  embededs   , function(embeded){
 						medias.embededs.push(embeded.content);
 					});
 			};
 
 			if (typeof play.medias.visuel != 'undefined') {
-					visuels = play.medias.visuel;
+					var visuels = play.medias.visuel;
 					_.each(  visuels   , function(visuel){
 						medias.visuels.push(visuel);
 					});
@@ -355,7 +361,7 @@ function processData(data, dates, search){
 		event['the_month_text'] = numberToMonth(event['the_month']);
 		event['the_day'] = event['dateStart'].split('-')[2];
 
-		event['the_description_short'] = jQuery( '<p>' + event['the_description2'] + '</p>' ).text().split(' ').slice(0,50).join(' ') + '...';
+		event['the_description_short'] = $( '<p>' + event['the_description2'] + '</p>' ).text().split(' ').slice(0,50).join(' ') + '...';
 
 		event['the_category'] = getEventTypeName( event['eventTypeId'] , event_types);
 		event['the_media'] = getMediaFiles( event['eventId'] , plays);
@@ -407,11 +413,11 @@ function displayEvents(data, container, compiled){
 			var $dates = {};
 	    $date_fields.each(function(){
 				var $field = $(this);
-				$name = $field.attr('name');
+				var $name = $field.attr('name');
 				if ( $field.val() != '') $dates[$name] =  $field.val();
 			});
 
-			$search = false;
+			var $search = false;
 			if ($event_keyword.val() != ''){
 				$search = $event_keyword.val();
 			}
@@ -468,7 +474,7 @@ function initUsineEvents(data) {
 	if( $events_container.length  > 0) {
 		var compiled =  _.template($events_template);
 
-		$events_for_prochainement = $processed_data.events.slice(0,3); //first 3
+		var $events_for_prochainement = $processed_data.events.slice(0,3); //first 3
 		$events_container.html(  compiled({ events:   $events_for_prochainement  })  );
 	}
 
@@ -575,69 +581,4 @@ function jumpToSearchEventsForm(){
 function resetCalendar(){
 	$('#dateTimeDebut').val('').change();
 	$('#calendar_container').removeClass('clndr_visible');
-}
-
-
-
-function momentInFrench(){
-	moment.locale('fr', {
-    months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
-    monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
-    monthsParseExact : true,
-    weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
-    weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-    weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay : '[Aujourd’hui à] LT',
-        nextDay : '[Demain à] LT',
-        nextWeek : 'dddd [à] LT',
-        lastDay : '[Hier à] LT',
-        lastWeek : 'dddd [dernier à] LT',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : 'dans %s',
-        past : 'il y a %s',
-        s : 'quelques secondes',
-        m : 'une minute',
-        mm : '%d minutes',
-        h : 'une heure',
-        hh : '%d heures',
-        d : 'un jour',
-        dd : '%d jours',
-        M : 'un mois',
-        MM : '%d mois',
-        y : 'un an',
-        yy : '%d ans'
-    },
-    dayOfMonthOrdinalParse : /\d{1,2}(er|e)/,
-    ordinal : function (number) {
-        return number + (number === 1 ? 'er' : 'e');
-    },
-    meridiemParse : /PD|MD/,
-    isPM : function (input) {
-        return input.charAt(0) === 'M';
-    },
-    // In case the meridiem units are not separated around 12, then implement
-    // this function (look at locale/id.js for an example).
-    // meridiemHour : function (hour, meridiem) {
-    //     return /* 0-23 hour, given meridiem token and hour 1-12 */ ;
-    // },
-    meridiem : function (hours, minutes, isLower) {
-        return hours < 12 ? 'PD' : 'MD';
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
 }
