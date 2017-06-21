@@ -46,7 +46,7 @@
 
                 <% if ( event.salesLink != '' ) { %>
 
-              <p>  <a class="button " href="<%= event.salesLink %>"><i class="fa fa-ticket"></i> Billeterie</a>  </p>
+              <p>  <a class="button " target="_blank" href="<%= event.salesLink %>"><i class="fa fa-ticket"></i> Billeterie</a>  </p>
                 <%} %>
 
 
