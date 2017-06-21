@@ -1,3 +1,8 @@
+
+  import bxslider from 'bxslider/src/js/jquery.bxslider.js';
+  import clndr from 'clndr';
+
+
 (function ($, root, undefined) {
 
 	$(function () {
@@ -17,7 +22,7 @@
 
 
 
-		momentInFrench();
+		//momentInFrench();
 
 
 		if ( hasLocalStorage() &&  localStorage.getItem('usine_access_token') != null ) {
@@ -112,7 +117,7 @@
 
 	});
 
-})(jQuery, this);
+})($, this);
 
 function loadEventSlider(){
 
@@ -120,7 +125,7 @@ function loadEventSlider(){
 				auto: true,
 				controls: true,
 				autoHover: true,
-				video: true,
+				video: false,
 				pager:false,
 				mode: 'fade'
 			})
@@ -269,21 +274,21 @@ function getMediaFiles(event_id, plays) {
 			var links = [];
 
 			if (typeof play.medias.audio != 'undefined') {
-					audios = play.medias.audio;
+					var audios = play.medias.audio;
 					_.each(  audios   , function(audio){
 						medias.audios.push(audio);
 					});
 			};
 
 			if (typeof play.medias.embeded != 'undefined') {
-					embededs = play.medias.embeded;
+					var embededs = play.medias.embeded;
 					_.each(  embededs   , function(embeded){
 						medias.embededs.push(embeded.content);
 					});
 			};
 
 			if (typeof play.medias.visuel != 'undefined') {
-					visuels = play.medias.visuel;
+					var visuels = play.medias.visuel;
 					_.each(  visuels   , function(visuel){
 						medias.visuels.push(visuel);
 					});
@@ -355,7 +360,7 @@ function processData(data, dates, search){
 		event['the_month_text'] = numberToMonth(event['the_month']);
 		event['the_day'] = event['dateStart'].split('-')[2];
 
-		event['the_description_short'] = jQuery( '<p>' + event['the_description2'] + '</p>' ).text().split(' ').slice(0,50).join(' ') + '...';
+		event['the_description_short'] = $( '<p>' + event['the_description2'] + '</p>' ).text().split(' ').slice(0,50).join(' ') + '...';
 
 		event['the_category'] = getEventTypeName( event['eventTypeId'] , event_types);
 		event['the_media'] = getMediaFiles( event['eventId'] , plays);
@@ -407,11 +412,11 @@ function displayEvents(data, container, compiled){
 			var $dates = {};
 	    $date_fields.each(function(){
 				var $field = $(this);
-				$name = $field.attr('name');
+				var $name = $field.attr('name');
 				if ( $field.val() != '') $dates[$name] =  $field.val();
 			});
 
-			$search = false;
+			var $search = false;
 			if ($event_keyword.val() != ''){
 				$search = $event_keyword.val();
 			}
@@ -468,7 +473,7 @@ function initUsineEvents(data) {
 	if( $events_container.length  > 0) {
 		var compiled =  _.template($events_template);
 
-		$events_for_prochainement = $processed_data.events.slice(0,3); //first 3
+		var $events_for_prochainement = $processed_data.events.slice(0,3); //first 3
 		$events_container.html(  compiled({ events:   $events_for_prochainement  })  );
 	}
 

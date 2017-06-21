@@ -6,10 +6,7 @@
   "scripts": {
     "test": "say test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chillydesign/usineagaz.git"
-  },
+  "repository": "git+https://github.com/chillydesign/usineagaz.git",
   "keywords": [
     "wordpress",
     "webfactor",
@@ -22,11 +19,19 @@
     "url": "https://github.com/chillydesign/usineagaz/issues"
   },
   "homepage": "https://github.com/chillydesign/usineagaz#readme",
-  "dependencies": {},
+  "dependencies": {
+    "bxslider": "^4.2.11",
+    "clndr": "^1.4.7",
+    "jquery": "^3.2.1",
+    "moment": "^2.18.1",
+    "underscore": "^1.8.3"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-minify": "^1.0.0",
-    "gulp-sass": "^3.1.0"
+    "gulp-sass": "^3.1.0",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
   }
 }
