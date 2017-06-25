@@ -42,11 +42,22 @@
                 </ul>
                 <% }) %>
 
-                <%} %>
+                <% } %>
+
+
+                <% if (event.prices.length > 0) { %>
+                <h3><i class="fa fa-money"></i>  <% if (event.prices.length == 1) { %>Tarif <%  } else { %>Tarifs <% } %></h3>
+                <ul>
+                <%  _.each(event.prices ,function(price,key,list){  %>
+                  <li><%= (price.productName) %></li>
+                  <% }) %>
+                  </ul>
+
+                 <%  } %>
+
 
                 <% if ( event.salesLink != '' ) { %>
-
-              <p>  <a class="button " target="_blank" href="<%= event.salesLink %>"><i class="fa fa-ticket"></i> Billeterie</a>  </p>
+                <p>  <a class="button " target="_blank" href="<%= event.salesLink %>"><i class="fa fa-ticket"></i> Billetterie</a>  </p>
                 <%} %>
 
 
