@@ -321,6 +321,12 @@ table#more_events {
   .event_title a {font-size: 1.1em;text-transform: uppercase;font-weight: bold}
   .event_info { font-style: italic;font-size: 1.1em;opacity: 0.8}
 
+
+
+}
+
+@media (min-width: 768px) {
+  .event_title .event_info {height: 0;}
 }
 
 
@@ -409,6 +415,7 @@ table#more_events {
 
 
 
+
 .loading {
   animation: spin 1s linear infinite;
   width:20px;
@@ -445,6 +452,8 @@ table#more_events {
   .image_from_background, iframe {
     height: 400px;
     width: 100%;
+    background-size: contain;
+    background-color: lighten($background-color, 10);
   }
 
   h3 {

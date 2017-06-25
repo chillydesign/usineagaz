@@ -118,6 +118,10 @@ moment.locale('fr');
 
 	});
 
+
+
+
+
 })($, this);
 
 function loadEventSlider(){
@@ -505,12 +509,25 @@ function initUsineEvents(data) {
 							$calendar_container.removeClass('clndr_visible');
 					}
 
-				}
+				},
+        doneRendering: function() {
+
+          console.log("done");
+
+            $('#reset').on('click', function(){
+              $('#dateTimeDebut').val('').change();
+              $('#calendar_container').removeClass('clndr_visible');
+            })
+
+
+        }
 			});
 
 			$('#dateTimeDebut').on('click', function(){
 					$calendar_container.toggleClass('clndr_visible');
 			});
+
+
 
 
 		}
@@ -576,9 +593,4 @@ function jumpToSearchEventsForm(){
 			}
 		}
 	}
-}
-
-function resetCalendar(){
-	$('#dateTimeDebut').val('').change();
-	$('#calendar_container').removeClass('clndr_visible');
 }

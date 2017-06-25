@@ -12,4 +12,4 @@
   </div>
 </div>
 
-<div id="reset" class="button button_block" onClick="resetCalendar()">Voir tous</div>
+<div id="reset" class="button button_block" >Voir tous</div>
