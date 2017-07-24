@@ -1,4 +1,4 @@
-    <?php $news = get_posts( array('post_type' => 'post', 'posts_per_page'=> 3)); ?>
+    <?php $news = get_posts( array('post_type' => 'post', 'posts_per_page'=> 3 )); ?>
 
 <div class="container">
     <h2>- News -</h2>
