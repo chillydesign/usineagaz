@@ -49,7 +49,7 @@
                 <h3><i class="fa fa-money"></i>  <% if (event.prices.length == 1) { %>Tarif <%  } else { %>Tarifs <% } %></h3>
                 <ul>
                 <%  _.each(event.prices ,function(price,key,list){  %>
-                  <li><%= (price.productName) %></li>
+                  <li><%= price.productPublicName.fre %> <%= price.productPriceTtc %>CHF </li>
                   <% }) %>
                   </ul>
 

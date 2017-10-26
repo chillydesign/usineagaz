@@ -63,7 +63,7 @@ moment.locale('fr');
 
 		setInterval( function(){
 			$featured_slides.click();
-		}, 5000 )
+		}, 7000 )
 
 
 
@@ -109,7 +109,9 @@ moment.locale('fr');
 			auto: true,
 			controls: true,
 			autoControls: false,
-			pager: false
+			pager: false,
+            speed: 1000,
+            pause: 3000
 		});
 
 
@@ -281,21 +283,27 @@ function getMediaFiles(event_id, plays) {
 			if (typeof play.medias.audio != 'undefined') {
 					var audios = play.medias.audio;
 					_.each(  audios   , function(audio){
-						medias.audios.push(audio);
+                        if (audio.dest === 'site_web' ) {
+                            medias.audios.push(audio);
+                        }
 					});
 			};
 
 			if (typeof play.medias.embeded != 'undefined') {
 					var embededs = play.medias.embeded;
 					_.each(  embededs   , function(embeded){
-						medias.embededs.push(embeded.content);
+                        if (embeded.dest === 'site_web' ) {
+                            medias.embededs.push(embeded.content);
+                        }
 					});
 			};
 
 			if (typeof play.medias.visuel != 'undefined') {
 					var visuels = play.medias.visuel;
 					_.each(  visuels   , function(visuel){
-						medias.visuels.push(visuel);
+                        if (visuel.dest === 'site_web' ) {
+                            medias.visuels.push(visuel);
+                        }
 					});
 			};
 
@@ -351,6 +359,10 @@ function processData(data, dates, search){
 
 	var events_array =  _.toArray(events) ;
 
+    // dont include events that are serieID 673 - serie with a name of location
+    events_array = _.filter(  events_array  , function(e){
+        return e.serieId !== 673
+    });
 
 	for (var i = 0; i < events_array.length ; i++) {
 		var event = events_array[i];
@@ -374,8 +386,18 @@ function processData(data, dates, search){
 
 		event['the_banner'] = ''; // maybe put placeholder here
 		if (typeof event['medias'].visuel !== 'undefined'){
-			event['the_banner'] = event['medias'].visuel[0].content_url;
+            // get the first visuel marked with a category of banner
+            var visuels   = _.filter(  event['medias'].visuel  , function(v){
+                   return (  v.categoryName.fre === 'Banner'  )
+            });
+            if (visuels.length > 0) {
+                event['the_banner'] = visuels[0].content_url;
+            }
+
 		}
+
+        // sort by most expensive first
+        event['prices'] =   _.sortBy(  event['prices'] , 'productPriceTtc').reverse();
 
 
 	}
