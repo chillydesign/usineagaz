@@ -144,7 +144,7 @@ function getAccessToken(){
 
 	if( hasLocalStorage() ){
 		localStorage.removeItem('usine_access_token');
-		localStorage.removeItem('usine_events');
+    		localStorage.removeItem('usine_events_list');
 	}
 
 	$.ajax({
@@ -173,16 +173,25 @@ function getAccessToken(){
 function shouldGetEventsFromStorage() {
 
 	if ( hasLocalStorage() ) {
-		var usine_events = localStorage.getItem('usine_events');
+		var usine_events = localStorage.getItem('usine_events_list');
 		var usine_events_time = localStorage.getItem('usine_events_time');
 
+        var usine_events_time_moment =  moment.unix(usine_events_time);
+        var thirty_minutes_ago =  moment().subtract(30, 'minutes');
+
+        var usine_events_are_not_old = thirty_minutes_ago.isBefore(usine_events_time_moment);
+
+
 		// are events there and not older than 30 minutes;
-		if (usine_events != null && ( ( (new Date().getTime() ) - usine_events_time   )  / 1000 / 60 /30) < 1   ) {
+		if (usine_events != null && ( usine_events_are_not_old ) ) {
+            console.log('return true');
 			return true;
 		} else {
+            console.log('return false');
 			return false;
 		}
 	} else {
+        console.log('return has no local storage');
 		return false;
 	}
 }
@@ -191,13 +200,16 @@ function callEventsApi($token){
 
 	// if have local storage and events are stored, and they are not more than 30 minutes old
 	if (  shouldGetEventsFromStorage()   ) {
-		var usine_events = localStorage.getItem('usine_events');
+		var usine_events = localStorage.getItem('usine_events_list');
 		initUsineEvents( JSON.parse(usine_events) );
 
 	} else {
 
-		var $dateTimeDebut ='2017-05-01';
-		var $dateTimeFin ='2023-12-01';
+        var now = moment()
+		var $dateTimeDebut = now.format('YYYY-MM-DD');
+		var $dateTimeFin =  now.add(1, 'y').format('YYYY-MM-DD');
+
+
 		// var search_terms = window.location.search.split('&');
 		// for (var st = 0; st < search_terms.length; st++) {
 		// 	var search_term = search_terms[st];
@@ -225,7 +237,7 @@ function callEventsApi($token){
 
 			if( hasLocalStorage() ){
 				localStorage.setItem('usine_events_time',  new Date().getTime() );
-				localStorage.setItem('usine_events',  JSON.stringify(data) );
+				localStorage.setItem('usine_events_list',  JSON.stringify(data) );
 			}
 
 			initUsineEvents(data);
