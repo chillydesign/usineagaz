@@ -144,7 +144,7 @@ function getAccessToken(){
 
 	if( hasLocalStorage() ){
 		localStorage.removeItem('usine_access_token');
-    		localStorage.removeItem('usine_events_list');
+    	localStorage.removeItem('usine_events_list');
 	}
 
 	$.ajax({
@@ -176,18 +176,22 @@ function shouldGetEventsFromStorage() {
 		var usine_events = localStorage.getItem('usine_events_list');
 		var usine_events_time = localStorage.getItem('usine_events_time');
 
-        var usine_events_time_moment =  moment.unix(usine_events_time);
-        var thirty_minutes_ago =  moment().subtract(30, 'minutes');
+        var usine_events_time_moment =  moment.unix(usine_events_time / 1000);
+        var ten_minutes_ago =  moment().subtract(10, 'minutes');
 
-        var usine_events_are_not_old = thirty_minutes_ago.isBefore(usine_events_time_moment);
+
+
+        var usine_events_are_not_old = ten_minutes_ago.isBefore(usine_events_time_moment);
+
+
 
 
 		// are events there and not older than 30 minutes;
 		if (usine_events != null && ( usine_events_are_not_old ) ) {
-            console.log('return true');
+            console.log('return true, should get from storage');
 			return true;
 		} else {
-            console.log('return false');
+            console.log('return false, should get from api');
 			return false;
 		}
 	} else {
