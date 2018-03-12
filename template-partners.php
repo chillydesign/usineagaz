@@ -25,9 +25,9 @@ $partenaires_institutionnels = get_posts( array(
                 </div>
             </div>
 
-
-                <h3>Club partenaires</h3>
-            <ul id="partners_list">
+<div class="container">
+                <h3 style="padding-bottom:30px">Club partenaires</h3>
+            <ul class="partners_list">
                 <?php foreach ( $partenaires_club as $post ) :
                     setup_postdata( $post );
                     $partenaire_link = get_field('lien') ;
@@ -41,8 +41,8 @@ $partenaires_institutionnels = get_posts( array(
                 <?php endforeach; wp_reset_postdata();?>
             </ul>
 
-            <h3>Partenaires institutionnels</h3>
-        <ul id="partners_list">
+            <h3 style="padding-bottom:30px">Partenaires institutionnels</h3>
+        <ul class="partners_list">
             <?php foreach ( $partenaires_institutionnels as $post ) :
                 setup_postdata( $post );
                 $partenaire_link = get_field('lien') ;
@@ -56,7 +56,7 @@ $partenaires_institutionnels = get_posts( array(
             <?php endforeach; wp_reset_postdata();?>
         </ul>
 
-
+</div>
 
             </article>
             <!-- /article -->

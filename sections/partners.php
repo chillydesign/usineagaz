@@ -3,7 +3,11 @@
 <div id="partners_outer">
 <ul id="partners_slider" class="bxslider">
 
-	<?php $partenaires = get_posts( array('post_type' => 'partenaire', 'posts_per_page'=> -1 )); ?>
+	<?php $partenaires = get_posts( array(
+        'post_type' => 'partenaire',
+         'posts_per_page'=> -1 ,
+            'category_name' => 'partenaires-institutionnels'
+     )); ?>
 
 	<?php foreach ( $partenaires as $post ) :
 		setup_postdata( $post );

@@ -398,7 +398,9 @@ function processData(data, dates, search){
 		event['the_category'] = getEventTypeName( event['eventTypeId'] , event_types);
 		event['the_media'] = getMediaFiles( event['eventId'] , plays);
 
-		event['the_usine_link'] = single_event_page  + '#e=' + event['eventId'];
+        if (typeof single_event_page !== 'undefined') {
+		          event['the_usine_link'] = single_event_page  + '#e=' + event['eventId'];
+        }
 
 		event['the_banner'] = ''; // maybe put placeholder here
 		if (typeof event['medias'].visuel !== 'undefined'){

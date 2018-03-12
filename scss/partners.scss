@@ -1,4 +1,4 @@
-#partners_list {
+.partners_list {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -10,8 +10,7 @@
             width: 50%;
             max-width: 50%;
 
-    margin: 0 0 20px;
-
+            margin: 0 0 55px;
 
             @media (min-width: 768px) {
                 width: 25%;
