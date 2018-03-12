@@ -398,6 +398,8 @@ function processData(data, dates, search){
 		event['the_category'] = getEventTypeName( event['eventTypeId'] , event_types);
 		event['the_media'] = getMediaFiles( event['eventId'] , plays);
 
+    //    console.log(  event['eventId'], event['the_media'] );
+
         if (typeof single_event_page !== 'undefined') {
 		          event['the_usine_link'] = single_event_page  + '#e=' + event['eventId'];
         }

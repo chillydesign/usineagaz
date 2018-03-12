@@ -12,6 +12,7 @@ header {
 
   a {
     border-bottom: 0;
+    text-decoration: none;
   }
 
   &.visible_header {
@@ -79,7 +80,7 @@ header {
             color: white;
           }
           &:hover {
-            background: lighten(black,20);
+            background: transparentize(lighten(black,20),0.5);
           }
         }
       }

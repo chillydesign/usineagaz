@@ -29,19 +29,21 @@
 
 
         <% if ( event.the_media.artists.length > 0 ) { %>
+        <% if (typeof event.the_media.artists[0].links != 'undefined' ) { %>
+        <% if ( event.the_media.artists[0].links.length > 0 ) { %>
           <h3> <i class="fa fa-link"></i> Liens</h3>
           <%  _.each(event.the_media.artists ,function(artist,key,list){  %>
             <ul>
-              <%  if ( event.the_media.artists.length > 1 ) { %>
+              <%  if ( typeof event.the_media.artists.links != 'undefined' ) { %>
                 <li><%= artist.name %></strong></li>
                 <% } %>
-
                 <%  _.each(artist.links ,function(link,key,list){  %>
                   <li><a href="<%= link %>"><%= link %></a></li>
                   <% }) %>
                 </ul>
                 <% }) %>
-
+                <% } %>
+                <% } %>
                 <% } %>
 
 

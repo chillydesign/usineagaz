@@ -53,9 +53,10 @@ ul,ol {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   transition: all 0.3s;
-  border-bottom: 1px dotted white;
+  border-bottom: 0;
+  text-shadow: 0 0 2px transparentize(white, 0.5);
 
   &:link, &:visited, &:active {
     color: white;
