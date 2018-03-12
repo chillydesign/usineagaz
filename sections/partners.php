@@ -1,4 +1,4 @@
-<h2> - Partenaires - </h2>
+<!-- <h2> - Partenaires - </h2> -->
 
 <div id="partners_outer">
 <ul id="partners_slider" class="bxslider">

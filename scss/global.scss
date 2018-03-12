@@ -7,6 +7,7 @@
 @import "typography";
 @import "header";
 @import "footer";
+@import "partners";
 @import "calendar";
 
 body {
@@ -42,6 +43,10 @@ section {
     position: relative;
     z-index: 10;
     margin:400px 0 100px;
+
+    &.single_text_small {
+        margin: 150px 0 100px;
+    }
 
   }
 

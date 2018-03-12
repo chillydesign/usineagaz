@@ -20,12 +20,14 @@
 		</article>
 		<!-- /article -->
 
-		<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-			<?php $post_image = thumbnail_of_post_url(get_the_ID(), 'large'); ?>
-			<div id="single_background" style="background-image:url('<?php echo $post_image; ?>');">
-				<div class="gradient"></div>
-			</div>
-		<?php endif; ?>
+        <?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
+            <?php $post_image = thumbnail_of_post_url(get_the_ID(), 'large'); ?>
+        <?php else: ?>
+            <?php $post_image = get_template_directory_uri() . '/images/texture.jpg'; ?>
+        <?php endif; ?>
+            <div id="single_background" style="background-image:url('<?php echo $post_image; ?>');">
+                <div class="gradient"></div>
+            </div>
 
 
 
