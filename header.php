@@ -30,7 +30,7 @@
 		        </div>
 		        <nav class="col-sm-9">
 							<ul>
-								    <?php //  chilly_nav('primary-navigation'); ?>
+								    <?php   chilly_nav('primary-navigation'); ?>
 							</ul>
 
 		        </nav>

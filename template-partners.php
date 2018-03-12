@@ -20,7 +20,7 @@ $partenaires_institutionnels = get_posts( array(
         <!-- article -->
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             <div class="container">
-                <div class="single_text single_post single_text_small">
+                <div class="single_text single_post ">
                     <h1><?php the_title(); ?></h1>
                 </div>
             </div>
