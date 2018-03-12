@@ -147,25 +147,28 @@ function getAccessToken(){
     	localStorage.removeItem('usine_events_list');
 	}
 
-	$.ajax({
-		url: access_token_url,
-		method: 'GET',
-		data: {}
-	}).done(function( data ) {
+    if (typeof access_token_url !== 'undefined') {
+    	$.ajax({
+    		url: access_token_url,
+    		method: 'GET',
+    		data: {}
+    	}).done(function( data ) {
 
-		if (data.error) {
-			console.log(error.error_description);
-		} else {
+    		if (data.error) {
+    			console.log(error.error_description);
+    		} else {
 
-			var $access_token = data.access_token;
-			//console.log('token from api', $access_token);
-			if( hasLocalStorage() ){
-				localStorage.setItem('usine_access_token',  $access_token );
-			}
-			callEventsApi($access_token);
-		}
+    			var $access_token = data.access_token;
+    			//console.log('token from api', $access_token);
+    			if( hasLocalStorage() ){
+    				localStorage.setItem('usine_access_token',  $access_token );
+    			}
+    			callEventsApi($access_token);
+    		}
 
-	});
+    	});
+
+    }
 
 
 }
