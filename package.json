@@ -20,20 +20,20 @@
   },
   "homepage": "https://github.com/chillydesign/usineagaz#readme",
   "dependencies": {
-    "bxslider": "^4.2.11",
+    "bxslider": "^4.2.13",
     "clndr": "^1.4.7",
-    "jquery": "^3.2.1",
-    "moment": "^2.18.1",
+    "jquery": "^3.3.1",
+    "moment": "^2.21.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.0.0",
+    "gulp-autoprefixer": "^4.1.0",
     "gulp-minify": "^1.0.0",
-    "gulp-sass": "^3.1.0",
-    "lodash": "^4.17.4",
+    "gulp-sass": "^3.2.0",
+    "lodash": "^4.17.5",
     "lodash.clonedeep": "^4.5.0",
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0"
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.2"
   }
 }
