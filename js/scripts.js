@@ -415,6 +415,14 @@ function processData(data, dates, search){
             });
             if (visuels.length > 0) {
                 event['the_banner'] = visuels[0].content_url;
+            } else {
+                var fichiers   = _.filter(  event['medias'].fichier  , function(v){
+                       return (  v.categoryName.fre === 'Banner'  )
+                });
+                if (fichiers.length > 0) {
+                    event['the_banner'] = fichiers[0].content_url;
+                }
+
             }
 
 		}
