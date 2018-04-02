@@ -415,19 +415,17 @@ function processData(data, dates, search){
             });
             if (visuels.length > 0) {
                 event['the_banner'] = visuels[0].content_url;
-            } else {
-                console.log('hello');
-                var fichiers   = _.filter(  event['medias'].fichier  , function(v){
-                      return (  v.categoryName.fre === 'Banner'  )
-                });
-                console.log('fichiers', fichiers);
-                if (fichiers.length > 0) {
-                    event['the_banner'] = fichiers[0].content_url;
-                }
-
             }
 
 		}
+        if (typeof event['medias'].fichier !== 'undefined' && event['the_banner'] == ''){
+            var fichiers   = _.filter(  event['medias'].fichier  , function(v){
+                  return (  v.categoryName.fre === 'Banner'  )
+            });
+            if (fichiers.length > 0) {
+                event['the_banner'] = fichiers[0].content_url;
+            }
+        }
 
         // sort by most expensive first
         event['prices'] =   _.sortBy(  event['prices'] , 'productPriceTtc').reverse();
