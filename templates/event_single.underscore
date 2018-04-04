@@ -12,7 +12,7 @@
       </div>
       <div class="title_container">
         <h1><%= event.the_title %></h1>
-        <p class="meta"> <i class="fa fa-fw fa-clock-o"></i> <%=  event.timeStart.substr(0,5) %> </p>
+        <p class="meta"> <i class="fa fa-fw fa-clock-o"></i> <%=  event.nice_time_start %> </p>
         <p class="meta"><i class="fa fa-fw fa-tag"></i>  <%=  event.the_category %> / <%=  event.the_style %></p>
       </div>
     </div>

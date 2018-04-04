@@ -396,6 +396,19 @@ function processData(data, dates, search){
 		event['the_month_text'] = numberToMonth(event['the_month']);
 		event['the_day'] = event['dateStart'].split('-')[2];
 
+
+
+        if (typeof event['timeStart'] !== 'undefined') {
+            if (typeof event['annoncedTime'] !== 'undefined') {
+                event['nice_time_start'] = event['annoncedTime'].substr(0,5) + ' - Ouverture des portes ' + event['timeStart'].substr(0,5);
+            } else {
+                event['nice_time_start'] = event['timeStart'].substr(0,5);
+            };
+        } else {
+            event['nice_time_start'] =  '-';
+        }
+
+
 		event['the_description_short'] = $( '<p>' + event['the_description2'] + '</p>' ).text().split(' ').slice(0,50).join(' ') + '...';
 
 		event['the_category'] = getEventTypeName( event['eventTypeId'] , event_types);
@@ -404,7 +417,7 @@ function processData(data, dates, search){
     //    console.log(  event['eventId'], event['the_media'] );
 
         if (typeof single_event_page !== 'undefined') {
-		          event['the_usine_link'] = single_event_page  + '#e=' + event['eventId'];
+		 event['the_usine_link'] = single_event_page  + '#e=' + event['eventId'];
         }
 
 		event['the_banner'] = ''; // maybe put placeholder here
