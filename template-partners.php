@@ -26,7 +26,7 @@ $partenaires_institutionnels = get_posts( array(
             </div>
 
 <div class="container">
-                <h3 style="padding-bottom:30px">Club partenaires</h3>
+                <h3 style="margin-top:50px;padding-bottom:30px">Club partenaires</h3>
             <ul class="partners_list">
                 <?php foreach ( $partenaires_club as $post ) :
                     setup_postdata( $post );

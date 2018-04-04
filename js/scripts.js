@@ -488,7 +488,7 @@ function displayEvents(data, container, compiled){
 
 
 function numberToMonth($int){
-	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	var monthNames = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Jul", "Août", "Sep", "Oct", "Nov", "Dec"];
 	return monthNames[$int -1];
 }
 

@@ -5,6 +5,7 @@ h1  {
   color: white;
   font-weight: bold;
   font-size: 3.5em;
+  line-height: 100%;
 }
 
 
@@ -49,7 +50,14 @@ li {
 }
 
 ul,ol {
-  margin:0 0 30px;
+  margin:0 0 30px 30px;
+  list-style: circle;
+  line-height: 250%;
+
+  li {
+    margin-bottom: 5px;
+
+  }
 }
 
 a {
@@ -65,7 +73,13 @@ a {
 
 }
 
+strong, b {
+  font-weight: bold;
+}
 
+em, i {
+  font-style: italic;
+}
 //TABLES
 table {
   width: 100%;

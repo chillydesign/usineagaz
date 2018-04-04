@@ -17,7 +17,7 @@
                     <?php if ($lien) : ?>
                     <a href="<?php echo $lien; ?>"  >
                     <?php endif; ?>
-                    <div  class="photo_column_image" style="background-image:url(<?php echo $image['sizes']['thumbnail']; ?>)"></div>
+                    <div  class="photo_column_image" style="background-image:url(<?php echo $image['sizes']['medium']; ?>)"></div>
                     <?php echo $content; ?>
                     <?php if ($lien) : ?>
                     </a>

@@ -418,6 +418,14 @@ function processData(data, dates, search){
             }
 
 		}
+        if (typeof event['medias'].fichier !== 'undefined' && event['the_banner'] == ''){
+            var fichiers   = _.filter(  event['medias'].fichier  , function(v){
+                  return (  v.categoryName.fre === 'Banner'  )
+            });
+            if (fichiers.length > 0) {
+                event['the_banner'] = fichiers[0].content_url;
+            }
+        }
 
         // sort by most expensive first
         event['prices'] =   _.sortBy(  event['prices'] , 'productPriceTtc').reverse();
@@ -480,7 +488,7 @@ function displayEvents(data, container, compiled){
 
 
 function numberToMonth($int){
-	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	var monthNames = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Jul", "Août", "Sep", "Oct", "Nov", "Dec"];
 	return monthNames[$int -1];
 }
 

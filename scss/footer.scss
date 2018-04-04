@@ -112,6 +112,7 @@ body.event #social_bar {
             width:$social_bar_width;
             li {
                 display: block;
+                margin-bottom: 0;
 
                 &:hover {
                      span.tittle {

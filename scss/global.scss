@@ -28,7 +28,7 @@ img {
 section {
 
     padding:50px 0;
-    overflow-x:hidden;
+    // overflow-x:hidden;
 
 
     h2 {
@@ -47,7 +47,7 @@ section {
     .single_text {
         position: relative;
         z-index: 10;
-        margin:400px 0 100px;
+        margin:400px 0 00px;
 
         &.single_text_small {
             margin: 150px 0 100px;
@@ -219,6 +219,7 @@ iframe {
         height: 100%;
         width: 100%;
         min-height: 650px;
+        margin-left: 0;
 
 
         li {
@@ -498,7 +499,7 @@ table#more_events {
     // @media (min-width: 768px) {
     //     flex-wrap: nowrap;
     // }
-
+    margin: 0 -20px;
 
     .photo_column {
         flex:1 auto 0;
@@ -532,7 +533,7 @@ table#more_events {
             background-size: cover;
             width: 100%;
 
-            padding: 20%;
+            padding: 30%;
             margin: 0 0 20px;
         }
         .photo_column_content {
