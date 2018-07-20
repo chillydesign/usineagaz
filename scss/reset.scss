@@ -19,7 +19,7 @@ table {	border-collapse: collapse;	border-spacing: 0}
 .showOnComputer {
   visibility: hidden;height: 0;
 }
-
+td.showOnComputer{display: none;}
 
 @media (min-width: 768px) {
   .showOnMobile {
@@ -28,6 +28,7 @@ table {	border-collapse: collapse;	border-spacing: 0}
   .showOnComputer {
     visibility: visible;height: 0;
   }
+  td.showOnComputer{display: table-cell;}
 
 
 }
