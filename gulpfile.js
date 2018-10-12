@@ -5,12 +5,14 @@ var minify = require('gulp-minify');
 //var browserSync = require('browser-sync');
 
 
-gulp.task('heya', function() {
+gulp.task('heya', function(done) {
   console.log('I live! Gulp is alive!');
+      done();
 });
 
 
-gulp.task('sass', function(){
+
+gulp.task('sass', function(done){
   return gulp.src('scss/global.scss')
     .pipe(sass()) // Converts Sass to CSS with gulp-sass
     .pipe(autoprefixer({
@@ -18,12 +20,13 @@ gulp.task('sass', function(){
     }))
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(gulp.dest('css'))
+        done();
 });
 
 
 
 
-gulp.task('compress', function() {
+gulp.task('compress', function(done) {
   gulp.src('js/*.js')
     .pipe(minify({
         ext:{
@@ -33,7 +36,8 @@ gulp.task('compress', function() {
         exclude: ['tasks'],
         ignoreFiles: ['.combo.js', '-min.js' , 'jquery.js' , '.min.js' ]
     }))
-    .pipe(gulp.dest('js/min'))
+    .pipe(gulp.dest('js/min'));
+        done();
 });
 
 
@@ -41,7 +45,7 @@ gulp.task('compress', function() {
 
 
 // Run all Gulp tasks and serve application
-gulp.task('default', ['heya', 'sass', 'compress'], function() {
-  gulp.watch('scss/**/*.scss', ['sass']);
-  gulp.watch('js/**/*.js',  ['compress'] );
+gulp.task('default', gulp.series( 'sass', 'heya', 'compress'), function() {
+    gulp.watch('scss/**/*.scss', ['sass']);
+    gulp.watch('js/**/*.js',  ['compress'] );
 });
